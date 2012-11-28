@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   def self.find_or_create_sample(create_backreference=true)
     user = self.find_sample
     unless user
-      user = self.create!(SAMPLE_USER)
+      user = self.create!(SAMPLE_USER, :without_protection => true)
     end
     if create_backreference && ! user.person
       person = Person.find_or_create_sample(false)
